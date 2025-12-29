@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>颱風與乾旱 - 互動學習</title>
+    <style>
+        :root {
+            --typhoon-blue: #0984e3;
+            --drought-brown: #d35400;
+            --low-press: #6c5ce7;
+            --rain-color: #2980b9;
+            --correct-bg: #d4edda;
+            --correct-border: #28a745;
+            --incorrect-bg: #f8d7da;
+            --incorrect-border: #dc3545;
+        }
+
+        body {
+            font-family: "Microsoft JhengHei", sans-serif;
+            line-height: 1.7;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f6fa;
+        }
+
+        .content-section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        h2 { border-left: 6px solid #2d3436; padding-left: 15px; color: #2d3436; }
+        
+        /* 關鍵字顏色 */
+        .kw-low { color: var(--low-press); font-weight: bold; }
+        .kw-rain { color: var(--rain-color); font-weight: bold; }
+        .kw-ty { color: var(--typhoon-blue); font-weight: bold; }
+        .kw-dr { color: var(--drought-brown); font-weight: bold; }
+
+        .image-full { text-align: center; margin-top: 20px; }
+        .image-full img { max-width: 80%; border-radius: 8px; border: 1px solid #ddd; }
+
+        .side-layout { display: flex; align-items: flex-start; gap: 20px; margin-top: 15px; }
+        .side-text { flex: 1.2; }
+        .side-img { flex: 1; text-align: center; }
+        .side-img img { width: 100%; border-radius: 8px; border: 1px solid #ddd; }
+
+        /* 互動題樣式 */
+        .quiz-card { background: #fff; padding: 25px; border-radius: 12px; border: 2px solid #dfe6e9; margin-bottom: 30px; }
+        .correct { background-color: var(--correct-bg) !important; border-color: var(--correct-border) !important; }
+        .incorrect { background-color: var(--incorrect-bg) !important; border-color: var(--incorrect-border) !important; }
+        
+        .feedback { display: none; padding: 12px; margin-top: 15px; border-radius: 6px; font-weight: bold; }
+        
+        button { padding: 10px 20px; cursor: pointer; background: #2d3436; color: white; border: none; border-radius: 5px; }
+        button:disabled { background: #b2bec3; cursor: not-allowed; }
+        .retry-btn { background: #e17055; margin-left: 10px; display: none; }
+
+        footer { display: flex; justify-content: space-between; margin-top: 50px; padding: 20px; }
+        .nav-btn { padding: 12px 30px; text-decoration: none; border-radius: 6px; font-weight: bold; }
+        .prev-btn { background: #636e72; color: white; }
+        .next-btn { background: #00b894; color: white; }
+        .next-btn.disabled { background: #b2bec3; pointer-events: none; opacity: 0.6; }
+
+        @media (max-width: 768px) { .side-layout { flex-direction: column; } }
+    </style>
+</head>
+<body>
+
+    <section class="content-section">
+        <h2>颱風</h2>
+        <p>
+            <span class="kw-ty">颱風</span>源於熱帶海洋的強烈<span class="kw-low">低氣壓系統</span>，以低氣壓中心為軸心，在北半球<span class="kw-low">逆時針螺旋上升</span>並向外擴散，其核心的「<span class="kw-ty">颱風眼</span>」風平浪靜，而外圍的「眼牆」則有最強的狂風暴雨。它靠吸收海洋<span class="kw-low">熱能</span>和水氣維持，帶來豐沛降雨但也造成災害，並受<span class="kw-low">副熱帶高壓</span>引導路徑，變化多端。<br>
+            · <strong>風向與旋轉</strong>：北半球氣流<span class="kw-low">逆時針</span>流入，南半球則順時針流入。<br>
+            · <strong>能量來源</strong>：依賴熱帶海洋水氣凝結釋放的<span class="kw-low">熱</span>。<br>
+            · <strong>生成颱風重要條件</strong>：<span class="kw-low">高溫的洋面</span>、充沛的水氣和旺盛的上升氣流。<br>
+            <strong>颱風靠近時</strong>：迎風面首當其衝，易有狂風暴雨，濱海地區須注意巨浪來襲，因無地形阻擋，其風力往往為全臺之冠。<br>
+            <strong>颱風登陸時</strong>：颱風中心自海上移至陸地時，易受<span class="kw-ty">中央山脈</span>阻擋，破壞結構，加上失去水氣供應，颱風威力減弱。<br>
+            <strong>颱風遠離時</strong>：颱風中心移至臺灣海峽，雖然結構已被破壞，但外圍環流可能會引進旺盛的<span class="kw-rain">西南氣流</span>，為臺灣中南部帶來豪雨，因此仍須提高警覺。
+        </p>
+        <div class="image-full">
+            <img src="7.png" alt="颱風結構示意圖">
+            <p><small>圖 7：颱風結構與氣流方向</small></p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="side-layout">
+            <div class="side-text">
+                <p>
+                    第一、二、六類路徑颱風，當行經北部及東北部地區時，會帶來強降雨，尤其入秋後加上<span class="kw-low">東北季風</span>南下，更加大雨勢。位在背風處的臺東地區受到強烈<span class="kw-low">下沉氣流</span>影響常發生<span class="kw-dr">焚風</span>。<br>
+                    第四、五類路徑颱風從臺灣南端或近海通過，造成東南部地區雨量較多。<br>
+                    第七、八、九類路徑颱風出現頻率較少，其影響視颱風強度及暴風範圍而定。當東風越過中央山脈而下降，則常在臺中一帶發生<span class="kw-dr">焚風</span>。<br>
+                    第三類颱風路徑又稱為「<span class="kw-ty">穿心颱</span>」，為台灣中南部帶來劇烈、長時間的豪大雨，東部常受狂風暴雨，西部因山脈屏障會出現「<span class="kw-dr">焚風</span>」或複雜的降雨型態。
+                </p>
+            </div>
+            <div class="side-img">
+                <img src="8.png" alt="颱風路徑圖">
+                <p><small>圖 8：臺灣常見颱風路徑分類</small></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <h2>乾旱</h2>
+        <p>
+            臺灣每年的降雨量高出世界平均值許多，但仍屬於<span class="kw-dr">缺水國家</span>。這是因為臺灣降雨多集中在<span class="kw-rain">5～9月</span>，加上地形陡峭，水流湍急，降水不易留存使用，因此若該年度<span class="kw-rain">梅雨和颱風</span>所帶來的雨量不夠多，就容易發生水源不足的現象，形成<span class="kw-dr">乾旱</span>。<br>
+            臺灣北部及東北部地區因<span class="kw-low">東北季風</span>，冬天仍會有部分降雨，稍可紓解旱象；但是<span class="kw-dr">中南部地區</span>則容易在該年冬末到次年春初發生<span class="kw-dr">乾旱</span>。
+        </p>
+        <div class="image-full">
+            <img src="9.png" alt="台灣乾旱現象圖">
+            <p><small>圖 9：乾旱季節與地形影響</small></p>
+        </div>
+    </section>
+
+    <hr>
+    <h2>互動練習題</h2>
+
+    <div class="quiz-card" id="q1-box">
+        <p>1. [單選題] 關於北半球颱風的敘述，下列何者正確？</p>
+        <label><input type="radio" name="q1" value="A"> 氣流為順時針流入低壓中心</label><br>
+        <label><input type="radio" name="q1" value="B"> 颱風眼區域是整座颱風風雨最強的地方</label><br>
+        <label><input type="radio" name="q1" value="C"> 能量來源主要是熱帶海洋釋放的熱能</label>
+        <div id="f1" class="feedback"></div>
+        <button onclick="checkQ1()" id="btn1" disabled>檢查答案</button>
+        <button class="retry-btn" onclick="retry(1)" id="rt1">重做本題</button>
+    </div>
+
+    <div class="quiz-card" id="q2-box">
+        <p>2. [配對題] 當颱風中心移至臺灣海峽遠離時，最需防範哪種氣流為中南部帶來豪雨？</p>
+        <select id="q2-ans">
+            <option value="">-- 請選擇 --</option>
+            <option value="NE">東北季風</option>
+            <option value="SW">西南氣流</option>
+            <option value="焚風">下沉焚風</option>
+        </select>
+        <div id="f2" class="feedback"></div>
+        <button onclick="checkQ2()" id="btn2" disabled>檢查答案</button>
+        <button class="retry-btn" onclick="retry(2)" id="rt2">重做本題</button>
+    </div>
+
+    <div class="quiz-card" id="q3-box">
+        <p>3. [填充題] 臺灣雖然降雨充沛，但因地形陡峭且降雨集中，若該年度____與颱風雨量不足，中南部易發生乾旱。</p>
+        <input type="text" id="q3-ans" placeholder="輸入兩個字">
+        <div id="f3" class="feedback"></div>
+        <button onclick="checkQ3()" id="btn3" disabled>檢查答案</button>
+        <button class="retry-btn" onclick="retry(3)" id="rt3">重做本題</button>
+    </div>
+
+    <div class="quiz-card" id="q4-box">
+        <p>4. [判斷題] 關於「焚風」的成因，主要是因為強烈氣流受到山脈阻擋後，在背風面產生什麼現象？</p>
+        <label><input type="radio" name="q4" value="A"> 旺盛的上升氣流</label><br>
+        <label><input type="radio" name="q4" value="B"> 強烈的下沉氣流</label><br>
+        <label><input type="radio" name="q4" value="C"> 海洋水氣的凝結</label>
+        <div id="f4" class="feedback"></div>
+        <button onclick="checkQ4()" id="btn4" disabled>檢查答案</button>
+        <button class="retry-btn" onclick="retry(4)" id="rt4">重做本題</button>
+    </div>
+
+    <footer>
+        <a href="1.html" class="nav-btn prev-btn">← 上一頁</a>
+        <a href="./3.html" id="next-page" class="nav-btn next-btn disabled">下一頁 →</a>
+    </footer>
+
+    <script>
+        const quizStatus = { q1: false, q2: false, q3: false, q4: false };
+
+        // 監聽輸入啟用檢查按鈕
+        document.addEventListener('input', () => {
+            document.getElementById('btn1').disabled = !document.querySelector('input[name="q1"]:checked');
+            document.getElementById('btn2').disabled = !document.getElementById('q2-ans').value;
+            document.getElementById('btn3').disabled = !document.getElementById('q3-ans').value.trim();
+            document.getElementById('btn4').disabled = !document.querySelector('input[name="q4"]:checked');
+        });
+
+        function showResult(n, isCorrect, msg) {
+            const box = document.getElementById(`q${n}-box`);
+            const fb = document.getElementById(`f${n}`);
+            const btn = document.getElementById(`btn${n}`);
+            const rt = document.getElementById(`rt${n}`);
+
+            fb.innerHTML = msg;
+            fb.style.display = 'block';
+            box.className = 'quiz-card ' + (isCorrect ? 'correct' : 'incorrect');
+            btn.disabled = true;
+
+            if (isCorrect) {
+                quizStatus[`q${n}`] = true;
+                rt.style.display = 'none';
+                box.querySelectorAll('input, select').forEach(el => el.disabled = true);
+            } else {
+                rt.style.display = 'inline-block';
+            }
+            checkAllCorrect();
+        }
+
+        function retry(n) {
+            const box = document.getElementById(`q${n}-box`);
+            box.className = 'quiz-card';
+            document.getElementById(`f${n}`).style.display = 'none';
+            document.getElementById(`rt${n}`).style.display = 'none';
+            
+            if(n===1 || n===4) document.querySelectorAll(`input[name="q${n}"]`).forEach(r => r.checked = false);
+            if(n===2) document.getElementById('q2-ans').value = "";
+            if(n===3) document.getElementById('q3-ans').value = "";
+            
+            document.getElementById(`btn${n}`).disabled = true;
+        }
+
+        function checkQ1() {
+            const val = document.querySelector('input[name="q1"]:checked').value;
+            showResult(1, val === 'C', val === 'C' ? "正確！颱風依賴高溫洋面的熱能維持能量。" : "錯誤。北半球為逆時針流入，且颱風眼是風平浪靜的。");
+        }
+
+        function checkQ2() {
+            const val = document.getElementById('q2-ans').value;
+            showResult(2, val === 'SW', val === 'SW' ? "正確！遠離時引進的西南氣流常造成豪雨。" : "錯誤。西南氣流才是遠離時引進豪雨的主因。");
+        }
+
+        function checkQ3() {
+            const val = document.getElementById('q3-ans').value.trim();
+            showResult(3, val === '梅雨', val === '梅雨' ? "正確！梅雨與颱風是臺灣最重要的水資源來源。" : "錯誤。提示：發生在 5-6 月的降雨現象。");
+        }
+
+        function checkQ4() {
+            const val = document.querySelector('input[name="q4"]:checked').value;
+            showResult(4, val === 'B', val === 'B' ? "正確！空氣下沉增溫形成乾熱的焚風。" : "錯誤。下沉氣流才是焚風形成的關鍵。");
+        }
+
+        function checkAllCorrect() {
+            if (Object.values(quizStatus).every(v => v === true)) {
+                document.getElementById('next-page').classList.remove('disabled');
+            }
+        }
+    </script>
+</body>
+</html>

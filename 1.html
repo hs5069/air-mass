@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鋒面介紹 - 互動學習</title>
+    <style>
+        :root {
+            --cold-color: #0044cc;
+            --warm-color: #cc0000;
+            --stay-color: #800080;
+            --pressure-color: #27ae60;
+            --correct-bg: #d4edda;
+            --correct-border: #28a745;
+            --incorrect-bg: #f8d7da;
+            --incorrect-border: #dc3545;
+        }
+
+        body {
+            font-family: "Microsoft JhengHei", sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f2f5;
+        }
+
+        .content-section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        h2 { border-left: 6px solid #2c3e50; padding-left: 15px; color: #2c3e50; }
+        
+        /* 關鍵字顏色 */
+        .kw-cold { color: var(--cold-color); font-weight: bold; }
+        .kw-warm { color: var(--warm-color); font-weight: bold; }
+        .kw-stay { color: var(--stay-color); font-weight: bold; }
+        .kw-press { color: var(--pressure-color); font-weight: bold; }
+
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: center; }
+        th { background-color: #f8f9fa; }
+
+        .flex-container { display: flex; align-items: flex-start; gap: 20px; margin-top: 15px; }
+        .flex-text { flex: 1; }
+        .flex-img { flex: 0 0 350px; text-align: center; }
+        .flex-img img { width: 100%; border-radius: 8px; border: 1px solid #ddd; }
+
+        .bottom-img { text-align: center; margin-top: 20px; }
+        .bottom-img img { max-width: 80%; border-radius: 8px; border: 1px solid #ddd; }
+
+        /* 互動題樣式 */
+        .quiz-card { background: #fff; padding: 25px; border-radius: 12px; border: 2px solid #e0e0e0; margin-bottom: 30px; }
+        .correct { background-color: var(--correct-bg) !important; border-color: var(--correct-border) !important; }
+        .incorrect { background-color: var(--incorrect-bg) !important; border-color: var(--incorrect-border) !important; }
+        
+        .feedback { display: none; padding: 12px; margin-top: 15px; border-radius: 6px; font-weight: bold; }
+        
+        button { padding: 10px 20px; cursor: pointer; background: #2c3e50; color: white; border: none; border-radius: 5px; transition: 0.3s; }
+        button:hover:not(:disabled) { background: #34495e; }
+        button:disabled { background: #ccc; cursor: not-allowed; }
+        .retry-btn { background: #e67e22; margin-left: 10px; display: none; }
+
+        footer { display: flex; justify-content: space-between; margin-top: 50px; padding: 20px; }
+        .nav-btn { padding: 12px 30px; text-decoration: none; border-radius: 6px; font-weight: bold; }
+        .prev-btn { background: #95a5a6; color: white; }
+        .next-btn { background: #27ae60; color: white; }
+        .next-btn.disabled { background: #ccc; pointer-events: none; opacity: 0.6; }
+
+        @media (max-width: 768px) { .flex-container { flex-direction: column; } .flex-img { flex: none; width: 100%; } }
+    </style>
+</head>
+<body>
+
+    <section class="content-section">
+        <h2>鋒面</h2>
+        <p>
+            <span class="kw-stay">鋒面</span>是指當<span class="kw-cold">冷</span>、<span class="kw-warm">暖氣團</span>相遇時，兩者間因溫度及溼度等性質均有顯著的不同，形成<span class="kw-press">低氣壓系統</span>中冷暖空氣交界面上的一條線。<br>
+            鋒面是冷暖空氣交界處，因氣流交錯和暖空氣抬升，容易產生雲和降雨，鋒面過後<span class="kw-press">氣壓常會升高</span>。<br>
+            常見的鋒面主要可分為<span class="kw-cold">冷鋒</span>、<span class="kw-warm">暖鋒</span>以及<span class="kw-stay">滯留鋒</span>三大類型。<br>
+            影響臺灣天氣的鋒面主要是<span class="kw-cold">冷鋒</span>和<span class="kw-stay">滯留鋒</span>，很少受到暖鋒的影響。
+        </p>
+    </section>
+
+    <section class="content-section">
+        <h2>冷鋒</h2>
+        <p>
+            · 定義：當<span class="kw-cold">冷氣團的勢力較強</span>，推動暖氣團移動所形成的交界面。<br>
+            · 抬升作用：冷空氣下沉，暖空氣被迫<span class="kw-warm">快速上升</span>，形成強烈上升氣流。<br>
+            · 符號為 <b>▲▲▲</b>，三角形尖端朝向前移的方向，此符號上方是冷氣團，下方是暖氣團。
+        </p>
+        <strong>冷鋒過境前後的天氣變化</strong>
+        <table>
+            <tr><th>時間</th><th>冷鋒前</th><th>冷鋒通過時</th><th>冷鋒後</th></tr>
+            <tr><td>天氣</td><td>溫暖、晴朗</td><td class="kw-warm">雨天</td><td class="kw-cold">寒冷、乾燥</td></tr>
+            <tr><td>氣壓</td><td>高</td><td>低</td><td class="kw-press">更高</td></tr>
+        </table>
+        <div class="bottom-img">
+            <img src="3.png" alt="冷鋒結構圖">
+            <p><small>圖 3：冷鋒剖面示意圖</small></p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="flex-container">
+            <div class="flex-text">
+                <strong>右方圖片判斷：</strong>
+                <ol>
+                    <li>鋒面左側為強烈<span class="kw-cold">高壓冷氣團</span>，右側為高壓暖氣團</li>
+                    <li>鋒面左側冷氣團<span class="kw-press">氣壓 > </span>右側暖氣團氣壓</li>
+                    <li>A處接下來幾天的天氣變化：<br>
+                        (1) 氣壓：<span class="kw-press">先下降後上升</span><br>
+                        (2) 天氣：溫暖、晴朗天氣，變成<span class="kw-warm">雨天</span>，而後氣溫<span class="kw-cold">明顯下降</span><br>
+                        (3) 風向改變
+                    </li>
+                </ol>
+            </div>
+            <div class="flex-img">
+                <img src="4.png" alt="冷鋒天氣圖判斷">
+                <p><small>圖 4：地面天氣圖上的冷鋒</small></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <h2>暖鋒</h2>
+        <div class="flex-container">
+            <div class="flex-text">
+                <p>
+                    · 定義：<span class="kw-warm">暖氣團的勢力較強</span>，朝冷氣團推進，形成緩慢移動、坡度小的鋒面，帶來鋒前廣泛、持續性、強度較弱的層狀雲和降雨。<br>
+                    · 符號為 <b>●●●</b>，半圓形突起朝向前移的方向，此符號上方是冷氣團，下方是暖氣團。<br>
+                    · 暖鋒過境後，該地<span class="kw-warm">氣溫略升</span>。<br>
+                    · 影響高緯度區域，台灣少受到暖鋒的影響。
+                </p>
+                <strong>右方圖片判斷：</strong>
+                <ol>
+                    <li>鋒面左側為強烈<span class="kw-warm">高壓暖氣團</span>，右側為高壓冷氣團</li>
+                    <li>鋒面左側暖氣團<span class="kw-press">氣壓 > </span>右側冷氣團氣壓</li>
+                    <li>B處接下來幾天的天氣變化：<br>
+                        (1) 氣壓：<span class="kw-press">先下降後上升</span><br>
+                        (2) 天氣：寒冷、晴朗天氣，變成<span class="kw-warm">雨天</span>，而後氣溫上升<br>
+                        (3) 風向改變
+                    </li>
+                </ol>
+            </div>
+            <div class="flex-img">
+                <img src="5.png" alt="暖鋒天氣圖判斷">
+                <p><small>圖 5：暖鋒示意圖</small></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <h2>滯留鋒</h2>
+        <p>
+            · 定義：冷、暖氣團的<span class="kw-stay">勢力相當時</span>，此時鋒面移動緩慢，幾乎處於停滯不前的狀態。<br>
+            · 符號為三角形與半圓形交錯，此符號上方是冷氣團，下方是暖氣團。<br>
+            · 暖空氣沿著鋒面向上抬升，造成該地區有<span class="kw-stay">連續性的降雨</span>。<br>
+            · 當季節進入春天，兩股氣團勢力相當，常在臺灣附近形成滯留鋒面，俗稱<span class="kw-warm">梅雨</span>（5～6月）。<br>
+            臺灣梅雨是主要水資源之一，迎風面<span class="kw-stay">西部雨量多於東部</span>，山區豪雨機會高於平地，亦容易造成災害。
+        </p>
+        <div class="bottom-img">
+            <img src="6.png" alt="滯留鋒示意圖">
+            <p><small>圖 6：梅雨季節的滯留鋒</small></p>
+        </div>
+    </section>
+
+    <hr>
+    <h2>互動練習題</h2>
+
+    <div class="quiz-card" id="q1-box">
+        <p>1. [單選題] 關於冷鋒過境「後」的天氣特徵，下列敘述何者正確？</p>
+        <label><input type="radio" name="q1" value="A"> 氣溫升高且晴朗</label><br>
+        <label><input type="radio" name="q1" value="B"> 氣壓下降且持續大雨</label><br>
+        <label><input type="radio" name="q1" value="C"> 氣溫下降、氣壓升高且天氣轉乾燥</label>
+        <div id="f1" class="feedback"></div>
+        <button onclick="checkQ1()" id="btn1" disabled>檢查答案</button>
+        <button class="retry-btn" onclick="retry(1)" id="rt1">重做本題</button>
+    </div>
+
+    <div class="quiz-card" id="q2-box">
+        <p>2. [配對題] 臺灣 5~6 月常見的「梅雨」是由哪種鋒面造成的？</p>
+        <select id="q2-ans">
+            <option value="">-- 請選擇 --</option>
+            <option value="cold">冷鋒</option>
+            <option value="warm">暖鋒</option>
+            <option value="stay">滯留鋒</option>
+        </select>
+        <div id="f2" class="feedback"></div>
+        <button onclick="checkQ2()" id="btn2" disabled>檢查答案</button>
+        <button class="retry-btn" onclick="retry(2)" id="rt2">重做本題</button>
+    </div>
+
+    <div class="quiz-card" id="q3-box">
+        <p>3. [填充題] 鋒面是冷暖空氣交界處，暖空氣會沿著交界面「____」（請填入動作），因而容易產生雲和降雨。</p>
+        <input type="text" id="q3-ans" placeholder="輸入兩個字">
+        <div id="f3" class="feedback"></div>
+        <button onclick="checkQ3()" id="btn3" disabled>檢查答案</button>
+        <button class="retry-btn" onclick="retry(3)" id="rt3">重做本題</button>
+    </div>
+
+    <div class="quiz-card" id="q4-box">
+        <p>4. [判斷題] 關於鋒面符號，三角形尖端或半圓形突起的方向代表什麼？</p>
+        <label><input type="radio" name="q4" value="A"> 鋒面移動的方向</label><br>
+        <label><input type="radio" name="q4" value="B"> 冷氣團所在的方向</label><br>
+        <label><input type="radio" name="q4" value="C"> 降雨量最大的地方</label>
+        <div id="f4" class="feedback"></div>
+        <button onclick="checkQ4()" id="btn4" disabled>檢查答案</button>
+        <button class="retry-btn" onclick="retry(4)" id="rt4">重做本題</button>
+    </div>
+
+    <footer>
+        <a href="index.html" class="nav-btn prev-btn">← 上一頁</a>
+        <a href="./2.html" id="next-page" class="nav-btn next-btn disabled">下一頁 →</a>
+    </footer>
+
+    <script>
+        const status = { q1: false, q2: false, q3: false, q4: false };
+
+        // 監聽輸入啟用按鈕
+        document.addEventListener('input', () => {
+            document.getElementById('btn1').disabled = !document.querySelector('input[name="q1"]:checked');
+            document.getElementById('btn2').disabled = !document.getElementById('q2-ans').value;
+            document.getElementById('btn3').disabled = !document.getElementById('q3-ans').value.trim();
+            document.getElementById('btn4').disabled = !document.querySelector('input[name="q4"]:checked');
+        });
+
+        function showResult(n, isCorrect, msg) {
+            const box = document.getElementById(`q${n}-box`);
+            const fb = document.getElementById(`f${n}`);
+            const btn = document.getElementById(`btn${n}`);
+            const rt = document.getElementById(`rt${n}`);
+
+            fb.innerHTML = msg;
+            fb.style.display = 'block';
+            box.className = 'quiz-card ' + (isCorrect ? 'correct' : 'incorrect');
+            btn.disabled = true;
+
+            if (isCorrect) {
+                status[`q${n}`] = true;
+                rt.style.display = 'none';
+                box.querySelectorAll('input, select').forEach(el => el.disabled = true);
+            } else {
+                rt.style.display = 'inline-block';
+            }
+            checkUnlock();
+        }
+
+        function retry(n) {
+            const box = document.getElementById(`q${n}-box`);
+            box.className = 'quiz-card';
+            document.getElementById(`f${n}`).style.display = 'none';
+            document.getElementById(`rt${n}`).style.display = 'none';
+            
+            if(n===1 || n===4) document.querySelectorAll(`input[name="q${n}"]`).forEach(r => r.checked = false);
+            if(n===2) document.getElementById('q2-ans').value = "";
+            if(n===3) document.getElementById('q3-ans').value = "";
+            
+            document.getElementById(`btn${n}`).disabled = true;
+        }
+
+        function checkQ1() {
+            const val = document.querySelector('input[name="q1"]:checked').value;
+            showResult(1, val === 'C', val === 'C' ? "正確！冷鋒過後冷氣團佔據，氣壓升、氣溫降。" : "錯誤。冷鋒後方是冷氣團，氣溫應下降。");
+        }
+
+        function checkQ2() {
+            const val = document.getElementById('q2-ans').value;
+            showResult(2, val === 'stay', val === 'stay' ? "正確！兩股勢力相當形成滯留鋒。" : "錯誤。梅雨是由滯留鋒造成的。");
+        }
+
+        function checkQ3() {
+            const val = document.getElementById('q3-ans').value.trim();
+            showResult(3, val === '抬升' || val === '上升', val === '抬升' || val === '上升' ? "正確！抬升冷卻後凝結成雲雨。" : "錯誤。提示：暖空氣比較輕，會...？");
+        }
+
+        function checkQ4() {
+            const val = document.querySelector('input[name="q4"]:checked').value;
+            showResult(4, val === 'A', val === 'A' ? "正確！符號指向鋒面前進的方向。" : "錯誤。符號是指向鋒面移動的前方。");
+        }
+
+        function checkUnlock() {
+            if (Object.values(status).every(v => v === true)) {
+                document.getElementById('next-page').classList.remove('disabled');
+            }
+        }
+    </script>
+</body>
+</html>

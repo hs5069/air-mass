@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>討論與反思：氣團與鋒面</title>
+    <style>
+        :root {
+            --primary-blue: #2980b9;
+            --bg-color: #f4f7f6;
+            --accent-green: #27ae60;
+            --text-dark: #2c3e50;
+        }
+
+        body {
+            font-family: "Microsoft JhengHei", sans-serif;
+            line-height: 1.8;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        header {
+            text-align: center;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        h1 { color: var(--primary-blue); margin-bottom: 20px; }
+
+        .student-info {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        .info-group { display: flex; align-items: center; gap: 8px; }
+        .info-group input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            width: 120px;
+            font-size: 1em;
+        }
+
+        .question-card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+            border-left: 8px solid var(--primary-blue);
+        }
+
+        .question-title {
+            font-size: 1.15em;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 120px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            resize: vertical;
+            box-sizing: border-box;
+            margin-bottom: 12px;
+            transition: border 0.3s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+        }
+
+        .hint-btn {
+            background: none;
+            border: 1px solid var(--accent-green);
+            color: var(--accent-green);
+            padding: 5px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: 0.3s;
+        }
+
+        .hint-btn:hover { background: var(--accent-green); color: white; }
+
+        .hint-box {
+            background: #f0f9f4;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.95em;
+            color: #444;
+            display: none;
+            margin-top: 12px;
+            border-left: 4px solid var(--accent-green);
+        }
+
+        .submit-container {
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        #submit-btn {
+            padding: 18px 60px;
+            font-size: 1.3em;
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(41, 128, 185, 0.3);
+            transition: all 0.3s;
+        }
+
+        #submit-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            background-color: #1a5276;
+        }
+
+        #submit-btn:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+
+        .nav-btn {
+            text-decoration: none;
+            color: #7f8c8d;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .nav-btn:hover { color: var(--primary-blue); }
+
+        /* 動畫效果 */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .hint-box { animation: fadeIn 0.4s ease; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>討論與反思：氣團與鋒面</h1>
+        <div class="student-info">
+            <div class="info-group">
+                <label>班級</label>
+                <input type="text" id="class-info" placeholder="如 801" oninput="checkForm()">
+            </div>
+            <div class="info-group">
+                <label>座號</label>
+                <input type="number" id="seat-info" placeholder="如 01" oninput="checkForm()">
+            </div>
+            <div class="info-group">
+                <label>姓名</label>
+                <input type="text" id="name-info" placeholder="請輸入姓名" oninput="checkForm()">
+            </div>
+        </div>
+        <p style="color: #e67e22; font-size: 0.9em; margin-top: 10px;">請填寫完所有欄位與問題，方可點擊下方提交按鈕。</p>
+    </header>
+
+    <main id="quiz-form">
+        <div class="question-card">
+            <div class="question-title">問題 A: 當兩種性質不同的氣團相遇時，為什麼容易出現降雨？</div>
+            <textarea id="ansA" placeholder="在此輸入您的答案..." oninput="checkForm()"></textarea>
+            <button class="hint-btn" onclick="toggleHint('hintA')">💡 回答建議與方向</button>
+            <div id="hintA" class="hint-box">
+                <strong>建議方向：</strong>請思考冷、暖空氣相遇時的密度差異。哪一種空氣會被抬升？上升過程中水氣會發生什麼變化（冷凝）？
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-title">問題 B: 冷鋒過境前後的風向、風速有何變化，為什麼？</div>
+            <textarea id="ansB" placeholder="在此輸入您的答案..." oninput="checkForm()"></textarea>
+            <button class="hint-btn" onclick="toggleHint('hintB')">💡 回答建議與方向</button>
+            <div id="hintB" class="hint-box">
+                <strong>建議方向：</strong>冷鋒代表冷氣團強勢推擠。觀察天氣圖中等壓線的疏密變化對風速的影響，以及鋒面過境後風向如何轉變。
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-title">問題 C: 如果海水溫度降低，你覺得對颱風的強度會有什麼影響？</div>
+            <textarea id="ansC" placeholder="在此輸入您的答案..." oninput="checkForm()"></textarea>
+            <button class="hint-btn" onclick="toggleHint('hintC')">💡 回答建議與方向</button>
+            <div id="hintC" class="hint-box">
+                <strong>建議方向：</strong>颱風的能量來源是熱帶海洋提供的。若水溫降低，水氣蒸發與凝結釋放的潛熱會增加還是減少？
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-title">問題 D: 中央山脈對台灣的降雨分布有什麼影響？</div>
+            <textarea id="ansD" placeholder="在此輸入您的答案..." oninput="checkForm()"></textarea>
+            <button class="hint-btn" onclick="toggleHint('hintD')">💡 回答建議與方向</button>
+            <div id="hintD" class="hint-box">
+                <strong>建議方向：</strong>分析迎風面與背風面的差異。當濕潤空氣遇到高山阻擋抬升時會造成什麼降雨現象？背風側則會發生什麼事？
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-title">問題 E: 你認為台灣最具代表性的天氣現象是什麼？請說明原因。</div>
+            <textarea id="ansE" placeholder="在此輸入您的答案..." oninput="checkForm()"></textarea>
+            <button class="hint-btn" onclick="toggleHint('hintE')">💡 回答建議與方向</button>
+            <div id="hintE" class="hint-box">
+                <strong>建議方向：</strong>此題為開放性回答。你可以挑選「梅雨、颱風、寒流、焚風、午後雷陣雨」等，結合課本學到的成因與對生活的影響來描述。
+            </div>
+        </div>
+    </main>
+
+    <div class="submit-container">
+        <button id="submit-btn" disabled onclick="submitToSheet()">提交答案至雲端試算表</button>
+        <p id="loading-msg" style="display:none; color: var(--primary-blue); margin-top: 10px;">資料傳送中，請稍候...</p>
+    </div>
+
+    <footer>
+        <a href="1.html" class="nav-btn">← 上一頁 (鋒面介紹)</a>
+        <span style="font-size: 0.85em; color: #95a5a6;">© 地球科學互動學習</span>
+    </footer>
+
+    <script>
+        // 設定 Google Apps Script 部署網址
+        const scriptURL = "https://script.google.com/macros/s/AKfycby-VC37vs-yytNH5wGM9dvm3QfDqEwolwJLq9RFiEC2wIi3vKlgUKGwEuMWlNbBkq44/exec";
+
+        function toggleHint(id) {
+            const h = document.getElementById(id);
+            h.style.display = (h.style.display === "block") ? "none" : "block";
+        }
+
+        // 檢查表單完整度
+        function checkForm() {
+            const classVal = document.getElementById('class-info').value.trim();
+            const seatVal = document.getElementById('seat-info').value.trim();
+            const nameVal = document.getElementById('name-info').value.trim();
+            const ansA = document.getElementById('ansA').value.trim();
+            const ansB = document.getElementById('ansB').value.trim();
+            const ansC = document.getElementById('ansC').value.trim();
+            const ansD = document.getElementById('ansD').value.trim();
+            const ansE = document.getElementById('ansE').value.trim();
+
+            const isComplete = classVal && seatVal && nameVal && ansA && ansB && ansC && ansD && ansE;
+            document.getElementById('submit-btn').disabled = !isComplete;
+        }
+
+        function submitToSheet() {
+            const btn = document.getElementById('submit-btn');
+            const loading = document.getElementById('loading-msg');
+            
+            btn.disabled = true;
+            loading.style.display = "block";
+            btn.innerText = "正在提交...";
+
+            const payload = {
+                className: document.getElementById('class-info').value,
+                seat: document.getElementById('seat-info').value,
+                name: document.getElementById('name-info').value,
+                ansA: document.getElementById('ansA').value,
+                ansB: document.getElementById('ansB').value,
+                ansC: document.getElementById('ansC').value,
+                ansD: document.getElementById('ansD').value,
+                ansE: document.getElementById('ansE').value
+            };
+
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                cache: 'no-cache',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            }).then(() => {
+                alert("恭喜！答案已成功提交到雲端試算表。");
+                btn.innerText = "✅ 已成功提交";
+                loading.style.display = "none";
+                // 鎖定所有輸入欄位防止修改
+                document.querySelectorAll('textarea, input').forEach(el => el.disabled = true);
+            }).catch(error => {
+                alert("提交出現錯誤，請檢查網路後再試一次。");
+                console.error('Error!', error.message);
+                btn.disabled = false;
+                btn.innerText = "提交答案至雲端試算表";
+                loading.style.display = "none";
+            });
+        }
+    </script>
+</body>
+</html>
