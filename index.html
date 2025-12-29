@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>氣團教學與互動練習</title>
+    <style>
+        :root {
+            --primary-blue: #0056b3;
+            --temp-color: #e67e22; /* 溫度相關顏色 */
+            --humid-color: #3498db; /* 溼度相關顏色 */
+            --loc-color: #27ae60; /* 地點/壓力相關顏色 */
+            --correct-bg: #d4edda;
+            --correct-border: #c3e6cb;
+            --incorrect-bg: #f8d7da;
+            --incorrect-border: #f5c6cb;
+        }
+
+        body {
+            font-family: "Microsoft JhengHei", sans-serif;
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        .section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        h2 { color: var(--primary-blue); border-bottom: 2px solid var(--primary-blue); padding-bottom: 5px; }
+        
+        /* 關鍵字顏色 */
+        .kw-t { color: var(--temp-color); font-weight: bold; }
+        .kw-h { color: var(--humid-color); font-weight: bold; }
+        .kw-l { color: var(--loc-color); font-weight: bold; }
+
+        .image-box { text-align: center; margin-top: 20px; }
+        .image-box img { max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 5px; }
+
+        /* 題目樣式 */
+        .quiz-item {
+            border: 2px solid #eee;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            background: #fff;
+            transition: all 0.3s;
+        }
+        .correct { background-color: var(--correct-bg) !important; border-color: var(--correct-border) !important; }
+        .incorrect { background-color: var(--incorrect-bg) !important; border-color: var(--incorrect-border) !important; }
+
+        .feedback { display: none; margin-top: 10px; font-weight: bold; }
+        
+        button {
+            padding: 8px 18px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            border: none;
+            background: var(--primary-blue);
+            color: white;
+        }
+        button:disabled { background: #ccc; cursor: not-allowed; }
+        .retry-btn { background: #6c757d; margin-left: 10px; display: none; }
+
+        footer {
+            margin-top: 50px;
+            text-align: right;
+            padding: 20px;
+        }
+        .next-btn {
+            padding: 12px 25px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .next-btn.disabled {
+            background-color: #ccc;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="section">
+        <p>
+            <span class="kw-l">氣團</span>是指空氣因長時間停留在某一大範圍的地面或海面上後，逐漸受地表影響，使得其<span class="kw-t">溫度</span>及<span class="kw-h">溼度</span>等特性與當地漸趨一致。
+            <span class="kw-l">高壓中心</span>空氣下沉，氣候穩定，有利於穩定氣團的形成。
+            氣團的性質根據其<span class="kw-l">發源地</span>而有所不同，如<span class="kw-l">高緯度陸地</span>形成的氣團性質為<span class="kw-t">乾冷</span>，<span class="kw-l">低緯度海洋</span>形成的氣團性質為<span class="kw-t">濕熱</span>。氣團若離開發源地之後，會隨著經過的地表性質而改變。
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>冷氣團</h2>
+        <p>
+            <span class="kw-t">冬季</span>氣候，利於<span class="kw-l">西伯利亞、蒙古地區</span>形成<span class="kw-t">寒冷</span>、<span class="kw-h">乾燥</span>的大陸冷氣團。<br>
+            台灣冬季受蒙古冷氣團影響如下：<br>
+            1. <span class="kw-t">氣溫下降</span><br>
+            2. <span class="kw-l">東北季風</span>增強<br>
+            3. 北部（<span class="kw-l">迎風面</span>）為<span class="kw-h">濕冷</span>、多雲時晴，容易有雨。<br>
+            4. 中南部（<span class="kw-l">背風面</span>）為多為晴朗乾燥，日夜溫差大，是少雨的乾季。<br>
+            5. 冷氣團若帶著水氣，北部和東部會濕冷有雨；若水氣少，則轉為乾冷。<br>
+            若冷氣團的勢力極強，冷空氣將迅速南下到臺灣，造成各地氣溫驟降，若造成臺北當日最低溫下探<span class="kw-t">10℃或以下</span>，稱為<span class="kw-t">寒流</span>或寒潮。寒流來襲的低溫將導致農作物凍傷和養殖魚類大量死亡等災害，一般稱為「<span class="kw-t">寒害</span>」，因此中央氣象署會發布局部地區的<span class="kw-t">低溫特報</span>，使大家能預先防範。
+        </p>
+        <div class="image-box">
+            <img src="1.png" alt="冷氣團示意圖">
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>暖氣團</h2>
+        <p>
+            <span class="kw-t">夏季</span>氣候，利於<span class="kw-l">太平洋地區</span>形成<span class="kw-t">溫暖</span>、<span class="kw-h">潮濕</span>的海洋暖氣團。<br>
+            台灣夏季受太平洋暖氣團影響如下：<br>
+            1. <span class="kw-t">高溫炎熱</span>：產生下沉氣流，雲量少，太陽輻射直接加熱地表，造成持續高溫。<br>
+            2. <span class="kw-l">西南氣流</span>：西南氣流將南方暖濕空氣帶入，增加空氣的<span class="kw-h">濕度</span>，形成悶熱感。<br>
+            3. 西南氣流：上述兩者交互作用，常在午後觸發對流，形成<span class="kw-t">雷陣雨</span>。<br>
+            4. <span class="kw-l">颱風</span>影響：引導颱風路徑的關鍵系統，影響台灣水資源與災害。
+        </p>
+        <div class="image-box">
+            <img src="2.png" alt="暖氣團示意圖">
+        </div>
+    </div>
+
+    <hr>
+
+    <div id="quiz-area">
+        <h2>互動練習題</h2>
+
+        <div class="quiz-item" id="q1-box">
+            <p>1. [單選題] 氣團之所以能形成穩定的特性，通常是因為空氣停留在哪種氣壓系統中心？</p>
+            <input type="radio" name="q1" value="A" id="q1a"> <label for="q1a">低壓中心</label><br>
+            <input type="radio" name="q1" value="B" id="q1b"> <label for="q1b">高壓中心</label>
+            <div id="f1" class="feedback"></div>
+            <button onclick="checkQ1()" id="btn1" disabled>檢查答案</button>
+            <button class="retry-btn" onclick="retry(1)" id="rt1">重做本題</button>
+        </div>
+
+        <div class="quiz-item" id="q2-box">
+            <p>2. [性質配對] 低緯度海洋形成的氣團性質通常為：</p>
+            <select id="q2-select">
+                <option value="">--請選擇--</option>
+                <option value="dry-cold">乾冷</option>
+                <option value="wet-hot">濕熱</option>
+            </select>
+            <div id="f2" class="feedback"></div>
+            <button onclick="checkQ2()" id="btn2" disabled>檢查答案</button>
+            <button class="retry-btn" onclick="retry(2)" id="rt2">重做本題</button>
+        </div>
+
+        <div class="quiz-item" id="q3-box">
+            <p>3. [填充題] 若台北當日最低溫下探10℃或以下，此強烈冷氣團現象稱為「____」。</p>
+            <input type="text" id="q3-input" placeholder="請輸入答案">
+            <div id="f3" class="feedback"></div>
+            <button onclick="checkQ3()" id="btn3" disabled>檢查答案</button>
+            <button class="retry-btn" onclick="retry(3)" id="rt3">重做本題</button>
+        </div>
+
+        <div class="quiz-item" id="q4-box">
+            <p>4. [多選題] 關於太平洋暖氣團對台灣夏季的影響，下列敘述哪些正確？(複選)</p>
+            <input type="checkbox" name="q4" value="A" id="q4a"> <label for="q4a">造成高溫炎熱</label><br>
+            <input type="checkbox" name="q4" value="B" id="q4b"> <label for="q4b">午後常觸發雷陣雨</label><br>
+            <input type="checkbox" name="q4" value="C" id="q4c"> <label for="q4c">造成農作物凍傷</label>
+            <div id="f4" class="feedback"></div>
+            <button onclick="checkQ4()" id="btn4" disabled>檢查答案</button>
+            <button class="retry-btn" onclick="retry(4)" id="rt4">重做本題</button>
+        </div>
+    </div>
+
+    <footer>
+        <a href="./1.html" id="next-page" class="next-btn disabled">下一頁 →</a>
+    </footer>
+
+    <script>
+        const states = { q1: false, q2: false, q3: false, q4: false };
+
+        // 監聽輸入以啟用按鈕
+        document.addEventListener('change', validateButtons);
+        document.addEventListener('input', validateButtons);
+
+        function validateButtons() {
+            document.getElementById('btn1').disabled = !document.querySelector('input[name="q1"]:checked');
+            document.getElementById('btn2').disabled = !document.getElementById('q2-select').value;
+            document.getElementById('btn3').disabled = !document.getElementById('q3-input').value.trim();
+            document.getElementById('btn4').disabled = !document.querySelector('input[name="q4"]:checked');
+        }
+
+        function checkQ1() {
+            const val = document.querySelector('input[name="q1"]:checked').value;
+            const isCorrect = (val === 'B');
+            handleResult(1, isCorrect, isCorrect ? "正確！高壓中心空氣下沉有利穩定氣團形成。" : "錯誤，高壓系統才具備下沉且穩定的空氣特性。");
+        }
+
+        function checkQ2() {
+            const val = document.getElementById('q2-select').value;
+            const isCorrect = (val === 'wet-hot');
+            handleResult(2, isCorrect, isCorrect ? "正確！低緯度代表熱，海洋代表濕。" : "錯誤，請考慮低緯度(熱)與海洋(濕)的特性。");
+        }
+
+        function checkQ3() {
+            const val = document.getElementById('q3-input').value.trim();
+            const isCorrect = (val === '寒流' || val === '寒潮');
+            handleResult(3, isCorrect, isCorrect ? "正確！這會造成嚴重的寒害。" : "錯誤，答案是「寒流」或「寒潮」。");
+        }
+
+        function checkQ4() {
+            const checked = Array.from(document.querySelectorAll('input[name="q4"]:checked')).map(el => el.value);
+            const isCorrect = checked.includes('A') && checked.includes('B') && !checked.includes('C');
+            handleResult(4, isCorrect, isCorrect ? "正確！高溫與雷陣雨是夏季暖氣團的特徵。" : "錯誤，農作物凍傷是冷氣團（寒害）的特徵。");
+        }
+
+        function handleResult(num, isCorrect, msg) {
+            const box = document.getElementById(`q${num}-box`);
+            const fb = document.getElementById(`f${num}`);
+            const btn = document.getElementById(`btn${num}`);
+            const rt = document.getElementById(`rt${num}`);
+
+            fb.innerHTML = msg;
+            fb.style.display = 'block';
+            box.className = 'quiz-item ' + (isCorrect ? 'correct' : 'incorrect');
+            
+            btn.disabled = true;
+            if (isCorrect) {
+                states[`q${num}`] = true;
+                rt.style.display = 'none';
+                // 鎖定所有輸入
+                box.querySelectorAll('input, select').forEach(el => el.disabled = true);
+            } else {
+                rt.style.display = 'inline-block';
+            }
+            checkUnlock();
+        }
+
+        function retry(num) {
+            const box = document.getElementById(`q${num}-box`);
+            const fb = document.getElementById(`f${num}`);
+            const rt = document.getElementById(`rt${num}`);
+            
+            box.className = 'quiz-item';
+            fb.style.display = 'none';
+            rt.style.display = 'none';
+            
+            // 重置內容
+            if (num === 1) document.querySelectorAll('input[name="q1"]').forEach(el => el.checked = false);
+            if (num === 2) document.getElementById('q2-select').value = "";
+            if (num === 3) document.getElementById('q3-input').value = "";
+            if (num === 4) document.querySelectorAll('input[name="q4"]').forEach(el => el.checked = false);
+            
+            validateButtons();
+        }
+
+        function checkUnlock() {
+            if (Object.values(states).every(v => v === true)) {
+                document.getElementById('next-page').classList.remove('disabled');
+            }
+        }
+    </script>
+</body>
+</html>
